@@ -7,16 +7,22 @@ package mx.itson.totoro.persistencia;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+
 /**
  *
  * @author enri0
  */
 public class Conexion {
     
-    public Connection obtener(){
+    /**
+     * Obtiene una Conexion hacia la base de datos utilizando los para
+     * @return La conexion inicializada hacia la base de datos.
+     */
+    public  Connection obtener() {
        Connection conexion = null;
+       
        try{
-           conexion = DriverManager.getConnection("jdbc:mysql://localhost/totorodb?user=root&password=Ninten2.");
+           conexion = DriverManager.getConnection("jdbc:mysql://localhost:3308/totorodb?user=root&password=Ninten22");
        }catch(Exception ex){
            System.err.println("Ocurrio un error: " + ex.getLocalizedMessage());
        }
