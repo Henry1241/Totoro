@@ -9,23 +9,26 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 /**
+ * La clase conecta la base de datos que se quiere utilizar a NetBeans y le
+ * permite leer sus datos.
  *
  * @author enri0
  */
 public class Conexion {
-    
+
     /**
-     * Obtiene una Conexion hacia la base de datos utilizando los para
+     * Obtiene una Conexion hacia la base de datos utilizando los parametros
+     * proporcionados
      * @return La conexion inicializada hacia la base de datos.
      */
-    public  Connection obtener() {
-       Connection conexion = null;
-       
-       try{
-           conexion = DriverManager.getConnection("jdbc:mysql://localhost:3308/totorodb?user=root&password=Ninten22");
-       }catch(Exception ex){
-           System.err.println("Ocurrio un error: " + ex.getLocalizedMessage());
-       }
-       return conexion;
+    public Connection obtener() {
+        Connection conexion = null;
+
+        try {
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3308/totorodb?user=root&password=Ninten22");
+        } catch (Exception ex) {
+            System.err.println("Ocurrio un error: " + ex.getLocalizedMessage());
+        }
+        return conexion;
     }
 }
