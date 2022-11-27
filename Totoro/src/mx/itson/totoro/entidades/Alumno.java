@@ -69,7 +69,7 @@ public class Alumno {
            statement.setString(4, apodo);
            statement.execute();
            
-           resultado = statement.getUpdateCount() == 1;
+           resultado = statement.getUpdateCount() == 2;
            conexion.close();
            
        } catch (Exception ex) {
