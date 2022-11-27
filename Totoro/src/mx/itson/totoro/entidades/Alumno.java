@@ -57,7 +57,7 @@ public class Alumno {
         return alumnos;
     }
 
-   public boolean guardar(String nombre, String apellido, String idCia, Date fechaNacimiento, String apodo){
+   public static boolean guardar(String nombre, String apellido, String idCia, Date fechaNacimiento, String apodo){
        boolean resultado = false;
        try {
            Connection conexion = new Conexion().obtener();
