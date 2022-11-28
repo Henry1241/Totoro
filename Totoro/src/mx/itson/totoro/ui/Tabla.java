@@ -31,9 +31,25 @@ public class Tabla extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAlumno = new javax.swing.JTable();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        btnAgregar = new javax.swing.JCheckBoxMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -44,54 +60,52 @@ public class Tabla extends javax.swing.JFrame {
 
         tblAlumno.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido", "idCia", "Apodo"
+                "ID", "Nombre", "Apellidos", "ID CIA", "Apodo"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(tblAlumno);
+        if (tblAlumno.getColumnModel().getColumnCount() > 0) {
+            tblAlumno.getColumnModel().getColumn(0).setResizable(false);
+            tblAlumno.getColumnModel().getColumn(4).setResizable(false);
+        }
 
-        jCheckBox1.setText("Agregar");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        jMenu3.setText("Opciones alumno");
+
+        btnAgregar.setSelected(true);
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
+        jMenu3.add(btnAgregar);
+
+        jMenuBar2.add(jMenu3);
+        jMenuBar2.add(jMenu4);
+
+        setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jCheckBox1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jCheckBox1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(323, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(239, Short.MAX_VALUE))
         );
 
         pack();
@@ -104,38 +118,33 @@ public class Tabla extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        cargarTable();   
-               
+        cargarTable();
+
     }//GEN-LAST:event_formWindowOpened
-    private void cargarTable(){
-        List<Alumno> alumnos = new Alumno().obtenerTodos();
-                DefaultTableModel modelo = (DefaultTableModel)tblAlumno.getModel();
-                modelo.setRowCount(0);
-                   
-                   for(Alumno a : alumnos){
-                       modelo.addRow(new Object[] {
-                       a.getId(),
-                       a.getNombre(),
-                       a.getApellido(),
-                       a.getIdCia(),
-                       a.getApodo()
-                               
-                   });   
-                   }
+    private void cargarTable() {
+        List<Alumno> alumnos = Alumno.obtenerTodos();
+        DefaultTableModel modelo = (DefaultTableModel) tblAlumno.getModel();
+        modelo.setRowCount(0);
+
+        for (Alumno a : alumnos) {
+            modelo.addRow(new Object[]{
+                a.getId(),
+                a.getNombre(),
+                a.getApellido(),
+                a.getIdCia(),
+                a.getApodo()
+
+            });
+        }
     }
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_btnAgregarActionPerformed
-
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
         AlumnoForm alumnoFormulario = new AlumnoForm(this, true);
         alumnoFormulario.setVisible(true);
-        
+
         cargarTable();
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,7 +182,14 @@ public class Tabla extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBoxMenuItem btnAgregar;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblAlumno;
     // End of variables declaration//GEN-END:variables

@@ -8,6 +8,7 @@ package mx.itson.totoro.entidades;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,9 +34,10 @@ public class Alumno {
      * datos existentes en la base de datos para obtenerlos.
      * @return Regresa los datos de la tabla alumno encontrados en la base de datos.
      */
-    public List<Alumno> obtenerTodos() {
+    public static List<Alumno> obtenerTodos() {
         List<Alumno> alumnos = new ArrayList<>();
         try {
+            
             Connection conexion = new Conexion().obtener();
             Statement statement = conexion.createStatement();
             ResultSet resulSet = statement.executeQuery("SELECT id, nombre, apellido, idCia, fechaNacimiento, apodo FROM alumno");
@@ -57,19 +59,27 @@ public class Alumno {
         return alumnos;
     }
 
+    /**
+     * 
+     * @param nombre
+     * @param apellido
+     * @param idCia
+     * @param fechaNacimiento
+     * @param apodo
+     * @return Indica si se guardó o no el registro.
+     */
    public static boolean guardar(String nombre, String apellido, String idCia, Date fechaNacimiento, String apodo){
        boolean resultado = false;
        try {
            Connection conexion = new Conexion().obtener();
-           String consulta = "INSERT INTO (nombre, apellido, idCia, apodo) VALUES (?, ?, ?, ?)";
+           String consulta = "INSERT INTO Alumno(nombre, apellido, idCia, apodo) VALUES (?, ?, ?, ?)";
            PreparedStatement statement = conexion.prepareStatement(consulta);
            statement.setString(1, nombre);
            statement.setString(2, apellido);
            statement.setString(3, idCia);
            statement.setString(4, apodo);
-           statement.execute();
-           
-           resultado = statement.getUpdateCount() == 2;
+           statement.execute();       
+           resultado = statement.getUpdateCount() == 1;
            conexion.close();
            
        } catch (Exception ex) {

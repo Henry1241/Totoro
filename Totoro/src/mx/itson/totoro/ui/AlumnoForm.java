@@ -127,11 +127,11 @@ public class AlumnoForm extends javax.swing.JDialog {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         String nombre = txtNombre.getText();
-        String apellidos = txtApellidos.getText();
+        String apellido = txtApellidos.getText();
         String idCIa = txtIdCia.getText();
         String apodo = txtApodo.getText();
 
-        boolean resultado = Alumno.guardar(nombre, apellidos, idCIa, new Date(), apodo);
+        boolean resultado = Alumno.guardar(nombre, apellido, idCIa, new Date(), apodo);
 
         if (resultado){
             JOptionPane.showMessageDialog(this, "El registro se guardo correctamente", "Registo guardado", JOptionPane.INFORMATION_MESSAGE);
